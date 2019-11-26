@@ -50,9 +50,7 @@ get '/2' do
 end
 
 get '/2/2' do
-    <%def sum(a,b)%>
-    <%a + a%>
-    <%end%>
-    <%a = 2%>
+   num_sum = '<% 2+2 %>
+    <%= 4 %>'
     erb num_sum
 end
