@@ -50,7 +50,7 @@ get '/2' do
 end
 
 get '/2/2' do
-    <%def sum(a,a)%>
+    <%def sum(a,b)%>
     <%a + a%>
     <%end%>
     <%a = 2%>
