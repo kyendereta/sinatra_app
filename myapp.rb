@@ -1,51 +1,65 @@
 require 'sinatra'
 require 'sinatra/reloader'
 
-#Example
-get '/' do
-    'Hello World!'
-end
-get '/signup' do
-        'I am trying to sign in'
-end
-get '/signup/not_allowed' do
-        "Hello World!"
-end
-get '/cars:name' do
-    "This car is a #{params["name"]}"
-end
-#Creating my app
-get '/' do
-    'my name'
-end
-get '/myname' do
-    'yourname'
-end
-get '/myname/yourname:name' do
-     "#{params["name"].upcase} is nice (smiley)"
-end     
-get '/currenttime' do
-    "It is #{Time.now}"
+get "/all_users" do
+    details = {
+     "name" => ["Alice", "Michael", "Jane", "Clare", "Mary", "John"],
+     "age" => [20, 23, 43, 32, 23, 44],
+     "country" => ["Kenya", "Tanzania", "Ghana", "Uganda", "Ethiopia", "Egypt"]
+}
+
+@names = details["name"]
+@ages = details["age"]
+@countries = details["country"]
+    erb :users
 end
 
-#Embedding with erb
-get '/age_bracket:age' do
+__END__
 
-    age_sum =  "Hello you are :<%if params[:age].to_i >= 18; %>
-    <p> <%='Over age'%><p>
-    <%else%>
-    <p> <%='Underage'%> <p> 
-    <%end%>"
-    erb age_sum
-  end 
+@@users
 
-=begin 
-Create a route which will url localhost:9292/sum/2/2 and the sum of give interger in this case 4. 
-Your display should like so:
-"The sum of numbers 2 and 2 is 4". Display your results in a template(erb)
-=end
+<table>
 
-get '/sum/:number1/:number2' do 
-    sum = "Your answer is <%=#{params[:number1]} + #{params[:number2]}%>"
-    erb sum
-  end
+<tr>
+<th>name</th>
+<th>age</th>
+<th>country</th>
+</tr>
+
+<tr>
+<td><%=@names[0]%></td>
+<td><%=@ages[0]%></td>
+<td><%=@countries[0]%></td>
+</tr>
+
+<tr>
+<td><%=@names[1]%></td>
+<td><%=@ages[1]%></td>
+<td><%=@countries[1]%></td>
+</tr>
+
+<tr>
+<td><%=@names[2]%></td>
+<td><%=@ages[2]%></td>
+<td><%=@countries[2]%></td>
+</tr>
+
+<tr>
+<td><%=@names[3]%></td>
+<td><%=@ages[3]%></td>
+<td><%=@countries[3]%></td>
+</tr>
+
+<tr>
+<td><%=@names[4]%></td>
+<td><%=@ages[4]%></td>
+<td><%=@countries[4]%></td>
+</tr>
+
+<tr>
+<td><%=@names[5]%></td>
+<td><%=@ages[5]%></td>
+<td><%=@countries[5]%></td>
+</tr>
+
+</table>
