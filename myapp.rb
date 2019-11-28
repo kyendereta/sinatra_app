@@ -14,6 +14,31 @@ get "/all_users" do
     erb :users
 end
 
+get "/these_users" do
+    their_dets = [
+{name: "Alice",country: "Kenya", age:  20} ,
+{ name: "Michael",  age:  23, country: "Tanzania"},
+{name: "Jane", age: 43, country: "Ghana"},
+{name: "Clare", age: 32, country: "Uganda"},
+{ name: "Mary",      age:  23,country:  "Ethiopia"},
+{name: "John",age:   4, country: "Egypt"}
+]
+@x = their_dets.each do |s| 
+    puts s[:name]
+end
+
+@y = their_dets.each do |c| 
+    puts c[:country]
+end
+
+@z = their_dets.each do |a| 
+    puts a[:age]
+end
+
+erb :these_users
+end
+
+    
 __END__
 
 @@users
@@ -60,6 +85,23 @@ __END__
 <td><%=@names[5]%></td>
 <td><%=@ages[5]%></td>
 <td><%=@countries[5]%></td>
+</tr>
+
+</table>
+
+@@these_users
+
+<table>
+<tr>
+<th>Name</th>
+<th>Country</th>
+<th>Age</th>
+</tr>
+
+<tr>
+<td><%=@x%></td>
+<td><%=@y%></td>
+<td><%=@z%></td>
 </tr>
 
 </table>
