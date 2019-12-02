@@ -1,6 +1,39 @@
 require 'sinatra'
 require 'sinatra/reloader'
 
+get '/households' do
+"Chair"
+"Fridge"
+"Peanut Butter"
+end
+
+get '/sum' do
+    erb:sum 
+end
+post '/sum' do
+    @first_number =params[:first_number].strip
+    @second_number =params[:second_number].strip 
+    @sum = @first_number.to_f + @second_number.to_f 
+    File.open("results.txt", "a+") do |file|
+      file.puts(@sum) 
+      erb:calculation_results
+    end
+end
+
+get'/all_results' do
+    erb:all_results
+end
+
+post '/all_results' do
+    def all_results
+    return [] unless File.exist?("results.txt")
+    File.read("results.txt").split("\n")
+    end
+    @all_results= all_results
+    erb:all_results
+  end
+
+
 get "/all_users" do
     details = {
      "name" => ["Alice", "Michael", "Jane", "Clare", "Mary", "John"],
@@ -12,54 +45,11 @@ get "/all_users" do
 @ages = details["age"]
 @countries = details["country"]
     erb :users
+ end
+get '/signup:age' do
+    age = params["age"]
+    @age = age.to_i
+    erb:signup
 end
-
 __END__
 
-@@users
-
-<table>
-
-<tr>
-<th>name</th>
-<th>age</th>
-<th>country</th>
-</tr>
-
-<tr>
-<td><%=@names[0]%></td>
-<td><%=@ages[0]%></td>
-<td><%=@countries[0]%></td>
-</tr>
-
-<tr>
-<td><%=@names[1]%></td>
-<td><%=@ages[1]%></td>
-<td><%=@countries[1]%></td>
-</tr>
-
-<tr>
-<td><%=@names[2]%></td>
-<td><%=@ages[2]%></td>
-<td><%=@countries[2]%></td>
-</tr>
-
-<tr>
-<td><%=@names[3]%></td>
-<td><%=@ages[3]%></td>
-<td><%=@countries[3]%></td>
-</tr>
-
-<tr>
-<td><%=@names[4]%></td>
-<td><%=@ages[4]%></td>
-<td><%=@countries[4]%></td>
-</tr>
-
-<tr>
-<td><%=@names[5]%></td>
-<td><%=@ages[5]%></td>
-<td><%=@countries[5]%></td>
-</tr>
-
-</table>
