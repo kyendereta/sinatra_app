@@ -1,0 +1,18 @@
+<h3>Finding Sum</h3>
+<form action="/calculation_result">
+     <input name="first_number" type="text" placeholder="First Number" ><br>
+     <input name="second_number" type="text" placeholder="Second Number"><br>
+     <input type="submit" value="calculate">     
+
+</form >
+ <p>The sum of <%=@first_number%> and <%=@second_number%> is 
+ <%= @first_number.to_f + @second_number.to_f%></p>
+
+ <%if @first_number or @second_number%>
+ <p> Kindly fill the form to calculate </p>
+              <%else%>
+            <p>The sum of <%=@first_number%> and <%=@second_number%> is
+               <%= @first_number.to_f + @second_number.to_f%></p>
+
+         <%end%>
+     
